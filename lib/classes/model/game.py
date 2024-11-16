@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List
 
+from lib.classes.model.arena import SnakeArena
 from lib.classes.model.game_type import GameType
 
 
@@ -81,12 +82,15 @@ class SnakeGame(BaseGame):
     """
     SnakeGame class. Implements the game logic of the game 'Snake'.
     """
+
+    # class member
     player_score: int
+    arena: SnakeArena
 
     def __init__(self, g_type: GameType):
         super().__init__(g_type)
-
         self.player_score = 0
+        self.arena = SnakeArena()
 
     def play_move(self, move: str):
         """
