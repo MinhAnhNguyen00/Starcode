@@ -1,4 +1,7 @@
+import time
 from typing import TypeVar
+
+from pynput.keyboard import Listener
 
 from lib.classes.factory.factory import GuiFactory, GameFactory
 from lib.classes.model.game import BaseGame
@@ -28,8 +31,38 @@ class GameController:
         self.games.append(game_instance)
         self.guis.append(gui_instance)
 
-        print("Created game instance with type: " + game_instance.g_type.value)
-        print("Created gui instance with corresponding game type: " + gui_instance.game.g_type.value)
+        if g_type == GameType.SNAKE:
+            self.run_snake_game_loop(game_instance, gui_instance)
+        elif g_type == GameType.HANGMAN:
+            self.run_hangman_game_loop()
+        else:
+            raise ValueError(f'Unknown game type: {g_type}')
+
+    def run_snake_game_loop(self, game: B, gui: G):
+        """
+        Runs the snake game loop.
+        :param game: snake game instance
+        :param gui: snake gui instance
+        """
+
+        # capture keyboard inputs for movement
+        listener = Listener(on_press=game.on_key_press)
+        listener.start()
+
+        # display initial game state
+        gui.visualize_game_state()
+
+        # main game loop
+        while not game.is_game_finished():
+            # play last buffered move
+            game.play_move()
+            # update GUI
+            gui.visualize_game_state()
+            # wait until next game state update
+            time.sleep(1)
+
+    def run_hangman_game_loop(self):
+        pass
 
     def get_game_instance_by_type(self, g_type: GameType) -> B | None:
         """

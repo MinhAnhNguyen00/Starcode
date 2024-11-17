@@ -1,10 +1,10 @@
 from abc import ABC
 from typing import TypeVar
 from matplotlib.colors import to_rgb
+from IPython.display import clear_output, display
 
 import numpy as np
 import matplotlib.pyplot as plt
-
 
 from lib.classes.model.game import BaseGame, HangmanGame, SnakeGame
 from lib.classes.model.snake_arena_field_types import FieldColor, FieldType
@@ -34,6 +34,9 @@ class SnakeGui(BaseGui):
         visualize the game state using matplotlib.
         """
 
+        # clear the previous output
+        clear_output(wait=True)
+
         # map field types to rgb values
         field_to_rgb = {
             FieldType.EMPTY: to_rgb("white"),
@@ -58,7 +61,5 @@ class SnakeGui(BaseGui):
         ax.set_xticks([])
         ax.set_yticks([])
 
-        plt.show()
-
-
-
+        display(fig)
+        plt.close(fig)
