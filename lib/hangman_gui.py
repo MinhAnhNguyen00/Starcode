@@ -13,12 +13,13 @@ class HangmanGui:
         self.fig, self.ax = plt.subplots()
         self.target = target
         self.masked_target = masked_target
+        self.player_lives = player_lives
         self.player_error_count = 10 - player_lives
 
         if failed_chars:
-            self.covered_letters = set(failed_chars)
+            self.failed_chars = set(failed_chars)
         else:
-            self.covered_letters = set()
+            self.failed_chars = set()
 
         # Notification box text
         self.notification_message = "Welcome to Hangman!\nPlease enter your name below this cell..."
@@ -46,9 +47,12 @@ class HangmanGui:
         self.display_welcome()
 
     def update(self, masked_target: List, player_error_count: int, failed_chars: List[str], message: str = None):
+        # update members
         self.masked_target = masked_target
         self.player_error_count = player_error_count
-        self.covered_letters = set(failed_chars)
+        self.failed_chars = set(failed_chars)
+
+        # update notification text if passed
         if message is not None:
             self.notification_message = message
 
@@ -84,7 +88,7 @@ class HangmanGui:
     def display_masked_word(self):
         masked_word = " ".join(self.masked_target)
         self.ax.text(2.5, 2.5, masked_word, fontsize=20, ha='left', va='center')
-        guessed_letters = ", ".join(sorted(self.covered_letters))
+        guessed_letters = ", ".join(sorted(self.failed_chars))
         self.ax.text(2.5, 1.75, f"Guessed letters: {guessed_letters}", fontsize=12, ha='left', va='center')
 
     def display_notification_box(self):
