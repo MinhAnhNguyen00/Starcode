@@ -1,0 +1,9 @@
+/* custom.css */
+.highlight {
+    background-color: blue;
+    font-family: "Comic Sans MS";
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 5px;
+}
+
