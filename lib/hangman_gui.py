@@ -22,7 +22,7 @@ class HangmanGui:
         self.failed_letters = []
 
         # Notification box text
-        self.notification_message = "Welcome to Hangman!\nPlease enter your name below this cell..."
+        self.notification_message = "Willkommen zu Hangman!\nBitte gib deinen Namen ein..."
 
         # Define mapping for error counts and drawing functions
         self.error_steps = [
