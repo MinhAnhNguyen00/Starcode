@@ -74,7 +74,7 @@ Falls sich das Notebook nicht automatisch öffnet, kannst du die URL aus der Kon
 Klicke auf den folgenden Button, um eine Binder-Instanz mit den Lösungen zu starten:
 
 <p align="center">
-  <a href="https://mybinder.org/v2/gh/perimora/starcode/solution?labpath=main.ipynb" target="_blank">
+  <a href="https://mybinder.org/v2/gh/perimora/starcode/solution_fix?labpath=main.ipynb" target="_blank">
     <img src="https://mybinder.org/badge_logo.svg" alt="Binder starten">
   </a>
 </p>
